@@ -15,3 +15,28 @@
       </div>
 </body>
 </html>
+<script>
+    const links=document.querySelectorAll("a");
+    links.forEach(a=>{
+        a.addEventListener('mouseenter',highlight);
+        a.addEventListener('mouseleave',dark);
+    });
+    function highlight(){
+        this.classList.add('highlight');
+    }
+    function dark(){
+        this.classList.remove('highlight');
+    }
+</script>
+<style>
+    a{
+        text-decoration: none;
+    }
+    body{
+        background-color: blue;
+    }
+    .highlight{
+        background-color: white;
+        border-radius: 8px;
+    }
+</style>
