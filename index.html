@@ -6,6 +6,17 @@
     <title>Document</title>
 </head>
 <body>
+
+    <nav>
+        <ul class="menu">
+          <li><a href="">Home</a></li>
+          <li><a href="">Order Status</a></li>
+          <li><a href="">Tweets</a></li>
+          <li><a href="">Read Our History</a></li>
+          <li><a href="">Contact Us</a></li>
+        </ul>
+      </nav>
+
     <div class="wrapper">
         <p>Lorem ipsum dolor sit amet, <a href="">consectetur</a> adipisicing elit. Est <a href="">explicabo</a> unde natus necessitatibus esse obcaecati distinctio, aut itaque, qui vitae!</p>
         <p>Aspernatur sapiente quae sint <a href="">soluta</a> modi, atque praesentium laborum pariatur earum <a href="">quaerat</a> cupiditate consequuntur facilis ullam dignissimos, aperiam quam veniam.</p>
@@ -13,16 +24,25 @@
         <p>Esse quibusdam, ad, ducimus cupiditate <a href="">nulla</a>, quae magni odit <a href="">totam</a> ut consequatur eveniet sunt quam provident sapiente dicta neque quod.</p>
         <p>Aliquam <a href="">dicta</a> sequi culpa fugiat <a href="">consequuntur</a> pariatur optio ad minima, maxime <a href="">odio</a>, distinctio magni impedit tempore enim repellendus <a href="">repudiandae</a> quas!</p>
       </div>
+
 </body>
 </html>
 <script>
     const links=document.querySelectorAll("a");
+    const light=document.createElement('span');
+    light.classList.add('light');
+    document.body.append(light);
     links.forEach(a=>{
         a.addEventListener('mouseenter',highlight);
-        a.addEventListener('mouseleave',dark);
+       // a.addEventListener('mouseleave',dark);
     });
     function highlight(){
-        this.classList.add('highlight');
+       // this.classList.add('highlight');
+        const values=this.getBoundingClientRect();
+        light.style.width=`${values.width}px`;
+        light.style.height=`${values.height}px`;
+        console.log(values.width,values.height);
+        light.style.transform=`translate(${values.left}px,${values.top}px)`;
     }
     function dark(){
         this.classList.remove('highlight');
@@ -36,7 +56,29 @@
         background-color: blue;
     }
     .highlight{
+        transform: translate(10px,10px);
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        transition: all 0.6s;
         background-color: white;
         border-radius: 8px;
+    }
+    .light{
+        transform: translate(10px,10px);
+        box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        transition: all 0.6s;
+        background-color: pink;
+        border-radius: 8px;
+        position: absolute;
+        top:0;left:0;
+        display: block;
+        z-index: -1;
+    }
+    .menu{
+        display: flex;
+        list-style: none;
+       
+    }
+    .menu li{
+        padding-right: 40px;
     }
 </style>
